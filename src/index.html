@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link rel="icon" href="./asset/calculator-icon-2042x2048-8mv9eopl.png">
+  <title>Tip Calculator</title>
+</head>
+<body class="bg-gradient-to-r from-white from-10%  to-blue-500 flex justify-center items-center h-screen text-white">
+<div class="max-w-[960px] bg-gradient-to-t from-mild-blue to-blue-300 p-20 rounded-3xl">
+<div class="flex justify-center py-10">
+  <h1 class="font-ed text-4xl text-white font-bold">Tip-Calculator</h1>
+</div>
+  <form action="" class="py-6" >
+  <div class="grid gap-3 py-3">
+    <h2 class="font-pop text-4xl font-medium text-white">Bill Total</h2>
+    <div class="relative flex items-center">
+      <p class="text-3xl text-gray-700 absolute top-1 left-4">$</p>
+      <input type="number" placeholder="Amount" onkeyup="calculateBill()" id="billTotalInput" class="px-10 w-[530px] py-3 text-black shadow-2xl rounded-3xl bg-gray-100 focus:outline-none focus:bg-white">
+    </div>
+  </div>
+  <div class="grid gap-3">
+    <h2 class="font-pop text-3xl font-medium text-white">Tip</h2>
+    <div class="relative flex items-center">
+      <p class="text-3xl text-gray-700 absolute top-1 left-4">%</p>
+      <input type="number" placeholder="Tip" onkeyup="calculateBill()" id="tipInput" class="px-12 w-[530px] text-black py-3 shadow-2xl rounded-3xl bg-gray-100 focus:outline-none focus:bg-white">
+    </div>
+  </div>
+</form>
+<div class="flex justify-between">
+<div class="py-5">
+  <h3 class="text-4xl font-pop font-medium">people</h3>
+  <div class="flex gap-2 items-center py-2">
+    <button id="increasePeople" onclick="increasePeople()"><img src="./asset/11318643.png" alt="" class="h-10 w-10"></button>
+    <h2 class="text-[40px]" id="numOfPeople">1</h2>
+    <button id="decreasePeople" onclick="decreasePeople()"><img src="./asset/minud.png" alt="" class="h-10 w-10"></button>
+  </div>
+</div>
+<div class="py-6 flex flex-col gap-2">
+  <h2 class="text-4xl font-pop">Total per person</h2>
+  <h1 class="text-4xl font-pop flex justify-end" id="perPersonTotal">$0.00</h1>
+</div>
+</div>
+</div>
+<script>
+  const billTotalInput =document.getElementById("billTotalInput")
+  const tipInput = document.getElementById("tipInput")
+  const numOfPeople = document.getElementById("numOfPeople") 
+  const perPersonTotal = document.getElementById("perPersonTotal") 
+  let val = Number(numOfPeople.textContent) 
+  const calculateBill=()=>{
+   let vl1 =  Number(billTotalInput.value)
+   let vl2 = Number(tipInput.value)/100*vl1   
+   let vl3 = (vl1+vl2)/val
+   perPersonTotal.textContent=`$${vl3.toFixed(2)}`
+  }
+  const increasePeople=()=>{
+    val+=1
+    numOfPeople.textContent = val
+    calculateBill()
+  }
+  const decreasePeople=()=>{
+    if(val<=1){
+      alert("stop it man u can't go further")
+      throw "stop it man u can't go further"
+      }
+    val-=1
+    numOfPeople.textContent = val
+    calculateBill()
+  }
+</script>
+</body>
+</html>
